@@ -1,10 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import BlogsRow from "../Components/BlogsRow.vue";
 
 defineProps({
-  blogs: Array,
+  blogs: null,
 });
 </script>
 
@@ -18,14 +18,13 @@ defineProps({
       </h2>
     </template>
 
-    <div class="py-12">
-      <div class="mx-auto">
-        <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-          <div class="p-6 bg-white border-b border-gray-200">
-            You're logged in!
-          </div>
-        </div>
-      </div>
+    <div class="my-8 text-right">
+      <Link
+        :href="route('blogs.create')"
+        class="px-4 py-2 text-sm text-white rounded  bg-slate-900 hover:bg-slate-800"
+      >
+        Create New Blog
+      </Link>
     </div>
 
     <BlogsRow class="pb-10 mt-4" :blogs="blogs" />

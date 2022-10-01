@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Resources\BlogResource;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,10 +28,14 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'blogs' => auth()->user()->blogs()->paginate(),
+        'blogs' => BlogResource::collection(auth()->user()->blogs()->paginate()),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('blogs', BlogController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+    Route::post('blogs/create', [BlogController::class, 'store'])->name('blogs.store');
+    Route::post('blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+});
 
 require __DIR__ . '/auth.php';

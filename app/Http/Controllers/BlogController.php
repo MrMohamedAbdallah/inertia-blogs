@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use Inertia\Inertia;
 
 class BlogController extends Controller
 {
@@ -25,7 +26,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Blogs/Create');
     }
 
     /**
@@ -36,7 +37,14 @@ class BlogController extends Controller
      */
     public function store(StoreBlogRequest $request)
     {
-        //
+        Blog::create([
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'body' => $request->body,
+            'cover' => $request->hasFile('cover') ? $request->cover->store('covers', 'public') : null,
+        ]);
+
+        return redirect()->route('dashboard');
     }
 
     /**

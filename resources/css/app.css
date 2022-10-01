@@ -1,6 +1,61 @@
 @tailwind base;
 @tailwind components;
 
+@layer base {
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="search"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    textarea,
+    select {
+        @apply block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    }
+    [type="checkbox"],
+    [type="radio"] {
+        @apply rounded border-gray-300 text-indigo-500 shadow-sm cursor-pointer focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    }
+
+    [type="file"] {
+        @apply file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
+        file:text-sm sm:text-sm file:font-semibold
+      file:bg-indigo-50 file:text-indigo-600
+      hover:file:bg-indigo-100 cursor-pointer;
+    }
+
+    [disabled] {
+        @apply opacity-60 cursor-not-allowed;
+    }
+
+    label {
+        @apply block font-medium text-sm text-gray-700;
+    }
+
+    /* Tables */
+    table {
+        @apply w-full text-left border-collapse;
+    }
+
+    tr {
+        @apply hover:bg-gray-50;
+    }
+
+    th {
+        @apply border-b border-gray-200 px-2 py-4;
+    }
+
+    td {
+        @apply border-y border-gray-200 px-2 py-4;
+    }
+}
+
 .container {
     @apply max-w-7xl px-4 mx-auto;
 }

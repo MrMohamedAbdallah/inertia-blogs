@@ -1,8 +1,8 @@
 <script setup>
 import BlogCard from "./BlogCard.vue";
 
-defineProps({
-  blogs: Array,
+const props = defineProps({
+  blogs: null,
 });
 </script>
 
