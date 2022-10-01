@@ -35,7 +35,9 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
     Route::post('blogs/create', [BlogController::class, 'store'])->name('blogs.store');
-    Route::post('blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+    Route::get('blogs/{blog}', [BlogController::class, 'show'])
+        ->name('blogs.show')
+        ->withoutMiddleware('auth');
 });
 
 require __DIR__ . '/auth.php';

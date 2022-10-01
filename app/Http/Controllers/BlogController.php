@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Inertia\Inertia;
 
@@ -55,7 +56,9 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        return Inertia::render('Blogs/Show', [
+            'blog' => new BlogResource($blog),
+        ]);
     }
 
     /**
