@@ -23,7 +23,8 @@ class BlogResource extends JsonResource
                 return str_starts_with($this->cover, 'https') ? $this->cover : Storage::url($this->cover);
             }),
             'can' => [
-                'edit' => auth()->check() && $this->user->id == $this->user_id
+                'edit' => auth()->check() && $this->user->id == $this->user_id,
+                'delete' => auth()->check() && $this->user->id == $this->user_id
             ]
         ];
     }

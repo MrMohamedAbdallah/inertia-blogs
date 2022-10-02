@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
         ->withoutMiddleware('auth');
     Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::put('blogs/{blog}/edit', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 });
 
 require __DIR__ . '/auth.php';
