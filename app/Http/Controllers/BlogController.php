@@ -69,7 +69,11 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        $this->authorize('update', $blog);
+
+        return Inertia::render('Blogs/Edit', [
+            'blog' => new BlogResource($blog),
+        ]);
     }
 
     /**
@@ -81,7 +85,15 @@ class BlogController extends Controller
      */
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
-        //
+        $this->authorize('update', $blog);
+
+        $blog->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'cover' => $request->hasFile('cover') ? $request->cover->store('cover', 'public') : $blog->cover,
+        ]);
+
+        return redirect()->route('blogs.show', $blog);
     }
 
     /**

@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('blogs/{blog}', [BlogController::class, 'show'])
         ->name('blogs.show')
         ->withoutMiddleware('auth');
+    Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::put('blogs/{blog}/edit', [BlogController::class, 'update'])->name('blogs.update');
 });
 
 require __DIR__ . '/auth.php';

@@ -1,15 +1,22 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 defineProps(["blog"]);
 </script>
 
 <template>
-  <Head :title="blog.data.head" />
+  <Head :title="blog.data.title" />
 
   <AuthenticatedLayout>
     <div class="max-w-4xl mx-auto my-8">
+      <div class="my-8" v-if="blog.data.can.edit">
+        <Link
+          :href="route('blogs.edit', blog.data)"
+          class="px-4 py-2 text-sm text-white rounded  bg-slate-900 hover:bg-slate-800"
+          >Edit</Link
+        >
+      </div>
       <div class="max-w-xl mx-auto mb-8">
         <img
           v-if="blog.data.cover"
