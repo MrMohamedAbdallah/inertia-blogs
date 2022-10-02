@@ -1,5 +1,5 @@
 <script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import BaseLayout from "@/Layouts/BaseLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps(["blog"]);
@@ -15,7 +15,7 @@ const deleteSubmit = () => {
 <template>
   <Head :title="blog.data.title" />
 
-  <AuthenticatedLayout>
+  <BaseLayout>
     <div class="max-w-4xl mx-auto my-8">
       <div
         class="flex items-center justify-between my-8"
@@ -49,5 +49,5 @@ const deleteSubmit = () => {
         blog.data.body
       }}</pre>
     </div>
-  </AuthenticatedLayout>
+  </BaseLayout>
 </template>
