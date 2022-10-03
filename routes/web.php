@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Resources\BlogResource;
+use App\Models\Blog;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,16 +21,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'blogs' => BlogResource::collection(Blog::with('user')->latest()->paginate()),
     ]);
 });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'blogs' => BlogResource::collection(auth()->user()->blogs()->paginate()),
+        'blogs' => BlogResource::collection(auth()->user()->blogs()->latest()->paginate()),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

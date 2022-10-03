@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/inertia-vue3";
   <AuthenticatedLayout v-if="$page.props.auth.user">
     <slot />
   </AuthenticatedLayout>
-  <div v-else>
+  <div v-else class="bg-gray-100">
     <nav class="bg-white border-b border-gray-100">
       <!-- Primary Navigation Menu -->
       <div class="container">
