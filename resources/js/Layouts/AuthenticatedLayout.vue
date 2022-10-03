@@ -65,6 +65,9 @@ const showingNavigationDropdown = ref(false);
                   </template>
 
                   <template #content>
+                    <DropdownLink :href="route('settings')">
+                      Settings
+                    </DropdownLink>
                     <DropdownLink
                       :href="route('logout')"
                       method="post"
@@ -144,6 +147,9 @@ const showingNavigationDropdown = ref(false);
             </div>
 
             <div class="mt-3 space-y-1">
+              <ResponsiveNavLink :href="route('settings')">
+                Settings
+              </ResponsiveNavLink>
               <ResponsiveNavLink
                 :href="route('logout')"
                 method="post"

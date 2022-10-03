@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Resources\BlogResource;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::put('blogs/{blog}/edit', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+
+    // Settings
+    Route::get('settings', [SettingsController::class, 'index'])->name('settings');
+    Route::post('settings/general', [SettingsController::class, 'general'])->name('settings.general');
+    Route::post('settings/password', [SettingsController::class, 'password'])->name('settings.password');
 });
 
 require __DIR__ . '/auth.php';
