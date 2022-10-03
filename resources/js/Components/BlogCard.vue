@@ -44,6 +44,9 @@ defineProps({
             : blog.body
         }}
       </p>
+      <div class="mt-4 text-xs" v-if="blog.user">
+        By: <strong>{{ blog.user.name }}</strong>
+      </div>
     </div>
   </Link>
 </template>

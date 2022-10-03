@@ -25,7 +25,8 @@ class BlogResource extends JsonResource
             'can' => [
                 'edit' => auth()->check() && $this->user->id == $this->user_id,
                 'delete' => auth()->check() && $this->user->id == $this->user_id
-            ]
+            ],
+            'user' => $this->whenLoaded('user', new UserResource($this->user)),
         ];
     }
 }
