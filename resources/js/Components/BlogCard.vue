@@ -45,7 +45,16 @@ defineProps({
         }}
       </p>
       <div class="mt-4 text-xs" v-if="blog.user">
-        By: <strong>{{ blog.user.name }}</strong>
+        <div class="flex items-center">
+          <div class="w-8 h-8 mr-2 overflow-hidden rounded-full">
+            <img
+              :src="blog.user.profilePicture"
+              :alt="blog.user.name"
+              class="object-cover object-center w-full h-full"
+            />
+          </div>
+          <strong>{{ blog.user.name }}</strong>
+        </div>
       </div>
     </div>
   </Link>

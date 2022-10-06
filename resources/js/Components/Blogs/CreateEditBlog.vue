@@ -115,12 +115,15 @@ const submit = () => {
       <!-- /Body -->
 
       <div class="mt-4">
-        <input
-          type="file"
-          name="cover"
-          id="cover"
-          @input="form.cover = $event.target.files[0]"
-        />
+        <div class="flex items-center">
+          <label for="cover" class="mr-2">Cover: </label>
+          <input
+            type="file"
+            name="cover"
+            id="cover"
+            @input="form.cover = $event.target.files[0]"
+          />
+        </div>
         <InputError class="mt-2" :message="form.errors.cover" />
       </div>
 

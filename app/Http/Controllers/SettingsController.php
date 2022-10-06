@@ -34,12 +34,17 @@ class SettingsController extends Controller
                 'email',
                 Rule::unique('users', 'email')->ignore(auth()->id())
             ],
+            'profilePicture' => 'nullable|image|max:2048',
         ]);
 
         $user = auth()->user();
 
         $user->name = $request->name;
         $user->email = $request->email;
+
+        if ($request->profilePicture)
+            $user->profile_picture = $request->profilePicture->store('profiles', 'public');
+
         $user->save();
 
         return redirect()->back();
