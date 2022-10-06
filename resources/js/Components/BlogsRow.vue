@@ -10,7 +10,7 @@ defineProps({
 
 <template>
   <div>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <BlogCard v-for="blog in blogs.data" :key="blog.id" :blog="blog" />
     </div>
     <div class="flex items-center justify-between my-10">
