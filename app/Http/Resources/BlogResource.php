@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
+use Mews\Purifier\Facades\Purifier;
 
 class BlogResource extends JsonResource
 {
@@ -18,7 +19,8 @@ class BlogResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'body' => $this->body,
+            'body' => strip_tags($this->body),
+            'bodyHTML' => Purifier::clean($this->body),
             'cover' => $this->when($this->cover, function () {
                 return str_starts_with($this->cover, 'https') ? $this->cover : Storage::url($this->cover);
             }),

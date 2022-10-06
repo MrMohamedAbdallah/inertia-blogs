@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Resources\BlogResource;
 use App\Models\Blog;
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::get('settings', [SettingsController::class, 'index'])->name('settings');
     Route::post('settings/general', [SettingsController::class, 'general'])->name('settings.general');
     Route::post('settings/password', [SettingsController::class, 'password'])->name('settings.password');
+
+    // File Upload
+    Route::post('upload-image', FileUploadController::class);
 });
 
 require __DIR__ . '/auth.php';

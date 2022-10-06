@@ -48,6 +48,7 @@ const deleteSubmit = () => {
       <pre class="font-sans text-base whitespace-normal lg:text-lg">{{
         blog.data.body
       }}</pre>
+      <div v-html="blog.data.bodyHTML"></div>
     </div>
   </BaseLayout>
 </template>
