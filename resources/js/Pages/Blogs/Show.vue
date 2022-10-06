@@ -13,7 +13,9 @@ const deleteSubmit = () => {
 </script>
 
 <template>
-  <Head :title="blog.data.title" />
+  <Head :title="blog.data.title">
+    <meta name="description" :content="blog.data.body" />
+  </Head>
 
   <BaseLayout>
     <div class="max-w-4xl mx-auto my-8">
@@ -36,6 +38,9 @@ const deleteSubmit = () => {
           Delete
         </button>
       </div>
+      <h1 class="mb-4 text-2xl font-bold lg:text-7xl">
+        {{ blog.data.title }}
+      </h1>
       <div class="max-w-xl mx-auto mb-8">
         <img
           v-if="blog.data.cover"
@@ -44,11 +49,7 @@ const deleteSubmit = () => {
           class="w-full rounded-lg"
         />
       </div>
-      <h1 class="mb-4 text-2xl font-bold lg:text-4xl">{{ blog.data.title }}</h1>
-      <pre class="font-sans text-base whitespace-normal lg:text-lg">{{
-        blog.data.body
-      }}</pre>
-      <div v-html="blog.data.bodyHTML"></div>
+      <div v-html="blog.data.bodyHTML" class="prose lg:prose-xl"></div>
     </div>
   </BaseLayout>
 </template>
