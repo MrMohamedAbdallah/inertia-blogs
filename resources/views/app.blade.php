@@ -11,7 +11,8 @@
 
         <!-- Scripts -->
         @routes
-        @vite('resources/js/app.js')
+        @viteReactRefresh
+        @vite('resources/js/app.jsx')
         @inertiaHead
     </head>
     <body class="font-sans antialiased bg-gray-100">
