@@ -1,23 +1,32 @@
-import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/inertia-react';
+import React from "react";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head, Link, usePage } from "@inertiajs/inertia-react";
+import BlogsRow from "@/Components/BlogsRow";
 
-export default function Dashboard(props) {
+export default function Dashboard({ blogs }) {
+    const props = usePage().props;
     return (
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                    Dashboard
+                </h2>
+            }
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-white border-b border-gray-200">You're logged in!</div>
-                    </div>
-                </div>
+            <div className="my-8 text-right">
+                <Link
+                    href={route("blogs.create")}
+                    className="px-4 py-2 text-sm text-white rounded bg-slate-900 hover:bg-slate-800"
+                >
+                    Create New Blog
+                </Link>
             </div>
+
+            <BlogsRow className="pb-10 mt-4" blogs={blogs} />
         </AuthenticatedLayout>
     );
 }
