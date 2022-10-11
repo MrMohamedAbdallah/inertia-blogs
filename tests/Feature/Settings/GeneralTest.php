@@ -30,8 +30,8 @@ class GeneralTest extends TestCase
             ->assertInertia(
                 fn (AssertableInertia $page) => $page
                     ->component('Settings/Index')
-                    ->where('auth.user.email', $user->email)
-                    ->where('auth.user.name', $user->name)
+                    ->where('auth.user.data.email', $user->email)
+                    ->where('auth.user.data.name', $user->name)
             );
     }
 

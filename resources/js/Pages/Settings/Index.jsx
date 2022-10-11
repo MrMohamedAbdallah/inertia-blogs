@@ -4,7 +4,7 @@ import { Head } from "@inertiajs/inertia-react";
 import General from "@/Components/Settings/General.jsx";
 import Password from "@/Components/Settings/Password.jsx";
 
-export default function Index() {
+export default function Index(props) {
     return (
         <AuthenticatedLayout
             header={
