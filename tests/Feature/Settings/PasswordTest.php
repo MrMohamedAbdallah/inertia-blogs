@@ -17,6 +17,7 @@ class PasswordTest extends TestCase
     {
         // Arrange
         $user = User::factory()->create();
+        $oldPassword = $user->password;
 
         // Act
         $this->actingAs($user);
@@ -37,7 +38,7 @@ class PasswordTest extends TestCase
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
-            'password' => $user->password, // It should be updated
+            'password' => $oldPassword, // It should be updated
         ]);
     }
 
